@@ -64,7 +64,7 @@ export function getDefaultAction(): string {
 }
 
 export function getMaxResults(): number {
-  return parseInt(preferences.maxResults, 10) ?? 10;
+  return parseInt(preferences.maxResults, 10) ?? 50;
 }
 
 export type Config = {

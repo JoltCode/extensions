@@ -22,21 +22,23 @@ export default async function giphy(force?: boolean, type?: "gifs" | "videos") {
   return <IGifAPI>{
     async search(term: string, opt?: APIOpt) {
       const { offset = 0, limit } = opt || {};
-      return (await api.search(term, { type, offset, limit })).data.map(mapGiphyResponse);
+      const results = await api.search(term, { type, offset, limit });
+      return { results: results.data.map(mapGiphyResponse) };
     },
 
     async trending(opt?: APIOpt) {
       const { offset = 0, limit = 10 } = opt || {};
-      return (await api.trending({ type, offset, limit })).data.map(mapGiphyResponse);
+      const results = await api.trending({ type, offset, limit });
+      return { results: results.data.map(mapGiphyResponse) };
     },
 
     async gifs(ids: string[]) {
       if (!ids.length) {
-        return [];
+        return { results: [] };
       }
 
       const { data } = await api.gifs(ids);
-      return data.map(mapGiphyResponse);
+      return { results: data.map(mapGiphyResponse) };
     },
   };
 }

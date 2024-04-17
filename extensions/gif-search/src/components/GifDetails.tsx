@@ -34,12 +34,8 @@ export function GifDetails(props: { item: IGif; service?: ServiceName }) {
       metadata={
         <Detail.Metadata>
           <Detail.Metadata.Label title="Title" text={title} />
-          {metadata?.width ? (
-            <Detail.Metadata.Label title="Width" text={`${metadata.width.toString()}px`} />
-          ) : undefined}
-          {metadata?.height ? (
-            <Detail.Metadata.Label title="Height" text={`${metadata.height.toString()}px`} />
-          ) : undefined}
+          {metadata?.width ? <Detail.Metadata.Label title="Width" text={`${metadata.width.toString()}px`} /> : null}
+          {metadata?.height ? <Detail.Metadata.Label title="Height" text={`${metadata.height.toString()}px`} /> : null}
           {metadata?.size && <Detail.Metadata.Label title="Size" text={FileSizeFormat.si(metadata?.size)} />}
           {labels}
           {links}
